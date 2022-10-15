@@ -8,12 +8,33 @@ teachers, students, and HOD and that was the motivation behind building this pro
 - On project initialisation, clone the repository using
 
 ```sh
-git clone https://github.com/parthjetani/PDF-Data-Extract.git
+git clone https://github.com/parthjetani/college-management-system.git
 ```
 
 > _Note:_ This needs to be done only once
 
-## Create and activate virtual environment
+- Create .env file in root folder and copy content of env file and fill the values
+
+## (1) Run project using docker
+
+- Install docker and docker-compose in your system
+- Now run the commands
+
+```sh
+docker-compose build
+```
+
+```sh
+docker-compse up
+```
+
+```sh
+docker exec -it <django-container-id> python manage.py createsuperuser
+```
+
+Then go to the browser and enter the url http://127.0.0.1:8000/
+
+## (2) Run project using normal django method
 
 Create virtual environment
 
@@ -35,7 +56,7 @@ For other operating system like Linux and MacOS, use
 source venv/bin/activate
 ```
 
-## Installing project dependencies
+### (i) Installing project dependencies
 
 To install the project dependencies, use
 
@@ -43,12 +64,20 @@ To install the project dependencies, use
 pip install -r requirements.txt
 ```
 
-> _Note:_ Create .env file inside project directory
-
-> _Note:_ And Copy the content of env file into .env file and fill the information
-
-## Run script to get extracted data
+### (ii) Run the commands makemigrations and migrate
 
 ```sh
-python pdf_extract.py
+python manage.py makemigrations
 ```
+
+```sh
+python manage.py migrate
+```
+
+### (iii) Create superuser(HOD)
+
+```shell
+python manage.py createsuperuser
+```
+
+Then go to the browser and enter the url http://127.0.0.1:8000/
